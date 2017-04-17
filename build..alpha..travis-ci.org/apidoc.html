@@ -1,0 +1,320 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/nodejitsu/nexpect"
+
+    >nexpect (v0.5.0)</a>
+</h1>
+<h4>Spawns and interacts with child processes using spawn / expect commands</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.nexpect">module nexpect</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nexpect.spawn">
+            function <span class="apidocSignatureSpan">nexpect.</span>spawn
+            <span class="apidocSignatureSpan">(command, params, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">nexpect.</span>nspawn</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.nexpect.nspawn">module nexpect.nspawn</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nexpect.nspawn.spawn">
+            function <span class="apidocSignatureSpan">nexpect.nspawn.</span>spawn
+            <span class="apidocSignatureSpan">(command, params, options)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.nexpect.spawn">module nexpect.spawn</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nexpect.spawn.spawn">
+            function <span class="apidocSignatureSpan">nexpect.</span>spawn
+            <span class="apidocSignatureSpan">(command, params, options)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.nexpect" id="apidoc.module.nexpect">module nexpect</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.nexpect.spawn" id="apidoc.element.nexpect.spawn">
+        function <span class="apidocSignatureSpan">nexpect.</span>spawn
+        <span class="apidocSignatureSpan">(command, params, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function nspawn(command, params, options) {
+  if (arguments.length === 2) {
+    if (Array.isArray(arguments[1])) {
+      options = {};
+    }
+    else {
+      options = arguments[1];
+      params = null;
+    }
+  }
+
+  if (Array.isArray(command)) {
+    params  = command;
+    command = params.shift();
+  }
+  else if (typeof command === &#x27;string&#x27;) {
+    command = command.split(&#x27; &#x27;);
+    params  = params || command.slice(1);
+    command = command[0];
+  }
+
+  options = options || {};
+  context = {
+    command: command,
+    cwd: options.cwd || undefined,
+    env: options.env || undefined,
+    ignoreCase: options.ignoreCase,
+    params: params,
+    queue: [],
+    stream: options.stream || &#x27;stdout&#x27;,
+    stripColors: options.stripColors,
+    verbose: options.verbose
+  };
+
+  return chain(context);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+## Example
+
+Lets take a look at some sample usage:
+
+``` js
+var nexpect = require(&#x27;nexpect&#x27;);
+
+nexpect.<span class="apidocCodeKeywordSpan">spawn</span>(&#x22;echo&#x22;, [&#x22;hello&#x22;])
+       .expect(&#x22;hello&#x22;)
+       .run(function (err, stdout, exitcode) {
+         if (!err) {
+           console.log(&#x22;hello was echoed&#x22;);
+         }
+       });
+...</pre></li>
+    </ul>
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.nexpect.nspawn" id="apidoc.module.nexpect.nspawn">module nexpect.nspawn</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.nexpect.nspawn.spawn" id="apidoc.element.nexpect.nspawn.spawn">
+        function <span class="apidocSignatureSpan">nexpect.nspawn.</span>spawn
+        <span class="apidocSignatureSpan">(command, params, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function nspawn(command, params, options) {
+  if (arguments.length === 2) {
+    if (Array.isArray(arguments[1])) {
+      options = {};
+    }
+    else {
+      options = arguments[1];
+      params = null;
+    }
+  }
+
+  if (Array.isArray(command)) {
+    params  = command;
+    command = params.shift();
+  }
+  else if (typeof command === &#x27;string&#x27;) {
+    command = command.split(&#x27; &#x27;);
+    params  = params || command.slice(1);
+    command = command[0];
+  }
+
+  options = options || {};
+  context = {
+    command: command,
+    cwd: options.cwd || undefined,
+    env: options.env || undefined,
+    ignoreCase: options.ignoreCase,
+    params: params,
+    queue: [],
+    stream: options.stream || &#x27;stdout&#x27;,
+    stripColors: options.stripColors,
+    verbose: options.verbose
+  };
+
+  return chain(context);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+## Example
+
+Lets take a look at some sample usage:
+
+``` js
+var nexpect = require(&#x27;nexpect&#x27;);
+
+nexpect.<span class="apidocCodeKeywordSpan">spawn</span>(&#x22;echo&#x22;, [&#x22;hello&#x22;])
+       .expect(&#x22;hello&#x22;)
+       .run(function (err, stdout, exitcode) {
+         if (!err) {
+           console.log(&#x22;hello was echoed&#x22;);
+         }
+       });
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.nexpect.spawn" id="apidoc.module.nexpect.spawn">module nexpect.spawn</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.nexpect.spawn.spawn" id="apidoc.element.nexpect.spawn.spawn">
+        function <span class="apidocSignatureSpan">nexpect.</span>spawn
+        <span class="apidocSignatureSpan">(command, params, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function nspawn(command, params, options) {
+  if (arguments.length === 2) {
+    if (Array.isArray(arguments[1])) {
+      options = {};
+    }
+    else {
+      options = arguments[1];
+      params = null;
+    }
+  }
+
+  if (Array.isArray(command)) {
+    params  = command;
+    command = params.shift();
+  }
+  else if (typeof command === &#x27;string&#x27;) {
+    command = command.split(&#x27; &#x27;);
+    params  = params || command.slice(1);
+    command = command[0];
+  }
+
+  options = options || {};
+  context = {
+    command: command,
+    cwd: options.cwd || undefined,
+    env: options.env || undefined,
+    ignoreCase: options.ignoreCase,
+    params: params,
+    queue: [],
+    stream: options.stream || &#x27;stdout&#x27;,
+    stripColors: options.stripColors,
+    verbose: options.verbose
+  };
+
+  return chain(context);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+## Example
+
+Lets take a look at some sample usage:
+
+``` js
+var nexpect = require(&#x27;nexpect&#x27;);
+
+nexpect.<span class="apidocCodeKeywordSpan">spawn</span>(&#x22;echo&#x22;, [&#x22;hello&#x22;])
+       .expect(&#x22;hello&#x22;)
+       .run(function (err, stdout, exitcode) {
+         if (!err) {
+           console.log(&#x22;hello was echoed&#x22;);
+         }
+       });
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
