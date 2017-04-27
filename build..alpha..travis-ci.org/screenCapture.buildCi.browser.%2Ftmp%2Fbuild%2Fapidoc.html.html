@@ -84,19 +84,6 @@
 
     </ol></li>
 
-    <li class="apidocModuleLi"><a href="#apidoc.module.nexpect.spawn">module nexpect.spawn</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.nexpect.spawn.spawn">
-            function <span class="apidocSignatureSpan">nexpect.</span>spawn
-            <span class="apidocSignatureSpan">(command, params, options)</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
 </ol></div>
 
 <div class="apidocSectionDiv">
@@ -176,74 +163,6 @@ nexpect.<span class="apidocCodeKeywordSpan">spawn</span>("echo", ["hello"])
     <h2>
         <a href="#apidoc.element.nexpect.nspawn.spawn" id="apidoc.element.nexpect.nspawn.spawn">
         function <span class="apidocSignatureSpan">nexpect.nspawn.</span>spawn
-        <span class="apidocSignatureSpan">(command, params, options)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">function nspawn(command, params, options) {
-  if (arguments.length === 2) {
-    if (Array.isArray(arguments[1])) {
-      options = {};
-    }
-    else {
-      options = arguments[1];
-      params = null;
-    }
-  }
-
-  if (Array.isArray(command)) {
-    params  = command;
-    command = params.shift();
-  }
-  else if (typeof command === 'string') {
-    command = command.split(' ');
-    params  = params || command.slice(1);
-    command = command[0];
-  }
-
-  options = options || {};
-  context = {
-    command: command,
-    cwd: options.cwd || undefined,
-    env: options.env || undefined,
-    ignoreCase: options.ignoreCase,
-    params: params,
-    queue: [],
-    stream: options.stream || 'stdout',
-    stripColors: options.stripColors,
-    verbose: options.verbose
-  };
-
-  return chain(context);
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
-## Example
-
-Lets take a look at some sample usage:
-
-``` js
-var nexpect = require('nexpect');
-
-nexpect.<span class="apidocCodeKeywordSpan">spawn</span>("echo", ["hello"])
-       .expect("hello")
-       .run(function (err, stdout, exitcode) {
-         if (!err) {
-           console.log("hello was echoed");
-         }
-       });
-...</pre></li>
-    </ul>
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.nexpect.spawn" id="apidoc.module.nexpect.spawn">module nexpect.spawn</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.nexpect.spawn.spawn" id="apidoc.element.nexpect.spawn.spawn">
-        function <span class="apidocSignatureSpan">nexpect.</span>spawn
         <span class="apidocSignatureSpan">(command, params, options)</span>
         </a>
     </h2>
