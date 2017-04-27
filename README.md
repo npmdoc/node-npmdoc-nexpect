@@ -1,4 +1,7 @@
-# api documentation for  [nexpect (v0.5.0)](https://github.com/nodejitsu/nexpect)  [![npm package](https://img.shields.io/npm/v/npmdoc-nexpect.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-nexpect) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-nexpect.svg)](https://travis-ci.org/npmdoc/node-npmdoc-nexpect)
+# npmdoc-nexpect
+
+#### basic api documentation for  [nexpect (v0.5.0)](https://github.com/nodejitsu/nexpect)  [![npm package](https://img.shields.io/npm/v/npmdoc-nexpect.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-nexpect) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-nexpect.svg)](https://travis-ci.org/npmdoc/node-npmdoc-nexpect)
+
 #### Spawns and interacts with child processes using spawn / expect commands
 
 [![NPM](https://nodei.co/npm/nexpect.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/nexpect)
@@ -71,7 +74,8 @@
     "scripts": {
         "test": "vows --spec"
     },
-    "version": "0.5.0"
+    "version": "0.5.0",
+    "bin": {}
 }
 ```
 
